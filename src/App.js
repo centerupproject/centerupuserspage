@@ -1,4 +1,3 @@
-// App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Membership from './pages/membership/membership.js';
@@ -7,7 +6,9 @@ import Junior from './pages/junior/junior.js';
 import JuniorForm from './pages/junior/juniorForm.js';
 import Universities from './pages/universities/universities.js';
 import UniversitiesForm from './pages/universities/universitiesForm.js';
+import { GoogleOAuthProvider } from '@react-oauth/google';  // Import GoogleOAuthProvider
 
+// The Navbar component
 const Navbar = () => {
   return (
     <nav style={styles.navbar}>
@@ -22,19 +23,22 @@ const Navbar = () => {
 
 const App = () => {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/membership" element={<Membership />} />
-        <Route path="/membership/form" element={<MembershipForm />} />
+    // Wrap the entire app inside the GoogleOAuthProvider
+    <GoogleOAuthProvider clientId="336925899208-iemfbn286iq9sg0gbr51n8akildpdsuc.apps.googleusercontent.com">
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/membership" element={<Membership />} />
+          <Route path="/membership/form" element={<MembershipForm />} />
 
-        <Route path="/Junior" element={<Junior />} />
-        <Route path="/junior/form" element={<JuniorForm />} />
+          <Route path="/Junior" element={<Junior />} />
+          <Route path="/junior/form" element={<JuniorForm />} />
 
-        <Route path="/universities" element={<Universities />} />
-        <Route path="/universities/form" element={<UniversitiesForm />} />
-      </Routes>
-    </Router>
+          <Route path="/universities" element={<Universities />} />
+          <Route path="/universities/form" element={<UniversitiesForm />} />
+        </Routes>
+      </Router>
+    </GoogleOAuthProvider>
   );
 };
 
