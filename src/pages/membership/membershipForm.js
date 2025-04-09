@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './UserForm.css';
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
 
 const DATABASE_URL = "https://formquestions-108ff-default-rtdb.firebaseio.com/";
 
@@ -9,6 +11,7 @@ const UserForm = () => {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [formAvailable, setFormAvailable] = useState(true);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     fetch(`${DATABASE_URL}memberships.json`)
@@ -34,15 +37,13 @@ const UserForm = () => {
           setFormAvailable(false);
         }
       })
-      .catch((error) => {
-        console.error("Error fetching form data:", error);
+      .catch(() => {
         setFormAvailable(false);
       });
   }, []);
 
   useEffect(() => {
     const userUid = "LuJf9aMujvQmaBJeNwKurwJYvBH2";
-
     fetch(`${DATABASE_URL}userResponses.json`)
       .then((response) => response.json())
       .then((data) => {
@@ -52,9 +53,6 @@ const UserForm = () => {
           });
           setUserResponses(filteredResponses);
         }
-      })
-      .catch((error) => {
-        console.error("Error fetching user responses:", error);
       });
   }, []);
 
@@ -83,14 +81,28 @@ const UserForm = () => {
       body: JSON.stringify(answers),
     })
       .then(() => alert("Form submitted successfully!"))
-      .catch((error) => {
-        console.error("Error submitting form:", error);
+      .catch(() => {
         alert("Error submitting form.");
       });
   };
 
+  const handleLoginSuccess = (credentialResponse) => {
+    const decoded = jwtDecode(credentialResponse.credential);
+    setUser(decoded);
+    console.log(decoded);
+  };
+
   if (!formAvailable) return <p>The form is not currently available.</p>;
   if (sections.length === 0) return <p>Loading form...</p>;
+
+  if (!user) {
+    return (
+      <div className="auth-wrapper">
+        <h2>Please sign in with Google to continue</h2>
+        <GoogleLogin onSuccess={handleLoginSuccess} onError={() => alert("Login failed")} />
+      </div>
+    );
+  }
 
   const currentSection = sections[currentSectionIndex];
 
@@ -116,6 +128,7 @@ const UserForm = () => {
 
   return (
     <div className="user-form">
+      <h1>Authorized Email {user.email}</h1>
       <h2>{currentSection.id}</h2>
       {questions.map((q) => (
         <div key={q.id} className={`question-item ${answers[q.id] !== undefined ? 'fade-in' : ''}`}>
