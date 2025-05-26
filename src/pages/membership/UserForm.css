@@ -49,12 +49,12 @@
     margin-right: 8px;
   }
   
-  .navigation-buttons {
+  .navigation-buttons > button , .logout-button,.submit-form-button {
     display: flex;
     justify-content: space-between;
   }
   
-  button {
+  .navigation-buttons > button , .logout-button,.submit-form-button {
     padding: 12px 25px;
     background-color: #4CAF50;
     color: white;
@@ -64,11 +64,11 @@
     font-size: 16px;
   }
   
-  button:hover {
+  .navigation-buttons > button , .logout-button,.submit-form-button {
     background-color: #45a049;
   }
   
-  button:disabled {
+  .navigation-buttons > button , .logout-button,.submit-form-button {
     background-color: #ccc;
     cursor: not-allowed;
   }
@@ -127,12 +127,11 @@
     margin-right: 8px;
   }
   
-  .navigation-buttons {
+  .navigation-buttons > button , .logout-button,.submit-form-button {
     display: flex;
     justify-content: space-between;
   }
-  
-  button {
+  .navigation-buttons > button , .logout-button,.submit-form-button {
     padding: 12px 25px;
     background-color: #4CAF50;
     color: white;
@@ -142,11 +141,11 @@
     font-size: 16px;
   }
   
-  button:hover {
+  .navigation-buttons > button , .logout-button,.submit-form-button {
     background-color: #45a049;
   }
   
-  button:disabled {
+  .navigation-buttons > button , .logout-button,.submit-form-button {
     background-color: #ccc;
     cursor: not-allowed;
   }
@@ -206,12 +205,12 @@
     margin-right: 8px;
   }
   
-  .navigation-buttons {
+  .navigation-buttons > button , .logout-button,.submit-form-button {
     display: flex;
     justify-content: space-between;
   }
   
-  button {
+  .navigation-buttons > button , .logout-button,.submit-form-button {
     padding: 12px 25px;
     background-color: #4CAF50;
     color: white;
@@ -221,11 +220,11 @@
     font-size: 16px;
   }
   
-  button:hover {
+  .navigation-buttons > button , .logout-button,.submit-form-button {
     background-color: #45a049;
   }
   
-  button:disabled {
+  .navigation-buttons > button , .logout-button,.submit-form-button {
     background-color: #ccc;
     cursor: not-allowed;
   }
@@ -373,3 +372,44 @@
     background-color: #0056b3;
   }
         
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .modal {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .modal button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .modal button:hover {
+    background: #0056b3;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  

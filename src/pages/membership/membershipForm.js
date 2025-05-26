@@ -13,6 +13,10 @@ const UserForm = () => {
   const [formAvailable, setFormAvailable] = useState(true);
   const [user, setUser] = useState(null);
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
   useEffect(() => {
     fetch(`${DATABASE_URL}memberships.json`)
       .then((response) => response.json())
@@ -43,6 +47,19 @@ const UserForm = () => {
   }, []);
 
   useEffect(() => {
+    const storedAnswers = localStorage.getItem("formAnswers");
+    if (storedAnswers) {
+      setAnswers(JSON.parse(storedAnswers));
+    }
+
+    const savedSection = localStorage.getItem("currentSection");
+    if (savedSection) {
+      const index = parseInt(savedSection, 10);
+      setCurrentSectionIndex(isNaN(index) ? 0 : index);
+    }
+  }, []);
+
+  useEffect(() => {
     const userUid = "LuJf9aMujvQmaBJeNwKurwJYvBH2";
     fetch(`${DATABASE_URL}userResponses.json`)
       .then((response) => response.json())
@@ -56,40 +73,102 @@ const UserForm = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    const expiresAt = localStorage.getItem("expiresAt");
+
+    if (storedUser && expiresAt) {
+      const now = new Date().getTime();
+      if (now < parseInt(expiresAt)) {
+        setUser(JSON.parse(storedUser));
+      } else {
+        localStorage.removeItem("user");
+        localStorage.removeItem("expiresAt");
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      const expiresAt = parseInt(localStorage.getItem("expiresAt"));
+      const timeLeft = expiresAt - new Date().getTime();
+
+      const logoutTimer = setTimeout(() => {
+        localStorage.removeItem("user");
+        localStorage.removeItem("expiresAt");
+        setUser(null);
+        alert("Session expired. Please log in again.");
+      }, timeLeft);
+
+      return () => clearTimeout(logoutTimer);
+    }
+  }, [user]);
+
   const handleChange = (questionId, value) => {
-    setAnswers((prev) => ({ ...prev, [questionId]: value }));
+    const updatedAnswers = { ...answers, [questionId]: value };
+    setAnswers(updatedAnswers);
+    localStorage.setItem("formAnswers", JSON.stringify(updatedAnswers));
   };
 
   const handleNext = () => {
     if (currentSectionIndex < sections.length - 1) {
-      setCurrentSectionIndex(currentSectionIndex + 1);
+      const newIndex = currentSectionIndex + 1;
+      setCurrentSectionIndex(newIndex);
+      localStorage.setItem("currentSection", newIndex.toString());
     }
   };
 
   const handlePrev = () => {
     if (currentSectionIndex > 0) {
-      setCurrentSectionIndex(currentSectionIndex - 1);
+      const newIndex = currentSectionIndex - 1;
+      setCurrentSectionIndex(newIndex);
+      localStorage.setItem("currentSection", newIndex.toString());
     }
   };
 
-  answers.status = 'pending';
-
   const handleSubmit = () => {
+    setIsSubmitting(true);
+    setShowModal(true);
+    setModalMessage("WAIT PLEASE...");
+
+    answers.status = "pending";
+    if (user) {
+      answers.email = user.email;
+    }
+
     fetch(`${DATABASE_URL}userResponses.json`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(answers),
     })
-      .then(() => alert("Form submitted successfully!"))
+      .then(() => {
+        setTimeout(() => {
+          setModalMessage("✅ YOUR FORM IS SUBMITTED");
+          localStorage.removeItem("formAnswers");
+          localStorage.removeItem("currentSection");
+        }, 2000);
+      })
       .catch(() => {
-        alert("Error submitting form.");
+        setTimeout(() => {
+          setModalMessage("❌ SOMETHING WENT WRONG");
+        }, 2000);
       });
   };
-
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("expiresAt");
+    localStorage.removeItem("formAnswers");
+    localStorage.removeItem("currentSection");
+    setAnswers({});
+    setCurrentSectionIndex(0);
+    setUser(null);
+  };
   const handleLoginSuccess = (credentialResponse) => {
     const decoded = jwtDecode(credentialResponse.credential);
     setUser(decoded);
-    console.log(decoded);
+    const expiresAt = new Date().getTime() + 60 * 60 * 1000;
+    localStorage.setItem("user", JSON.stringify(decoded));
+    localStorage.setItem("expiresAt", expiresAt.toString());
   };
 
   if (!formAvailable) return <p>The form is not currently available.</p>;
@@ -129,6 +208,7 @@ const UserForm = () => {
   return (
     <div className="user-form">
       <h1>Authorized Email {user.email}</h1>
+      <button className="logout-button" onClick={handleLogout}>Logout</button>
       <h2>{currentSection.id}</h2>
       {questions.map((q) => (
         <div key={q.id} className={`question-item ${answers[q.id] !== undefined ? 'fade-in' : ''}`}>
@@ -173,6 +253,7 @@ const UserForm = () => {
           )}
         </div>
       ))}
+
       <div className="navigation-buttons">
         {currentSectionIndex > 0 && (
           <button className="prev-button" onClick={handlePrev}>Previous</button>
@@ -180,9 +261,27 @@ const UserForm = () => {
         {currentSectionIndex < sections.length - 1 ? (
           <button className="next-button" onClick={handleNext} disabled={isNextDisabled}>Next</button>
         ) : (
-          <button className="submit-button" onClick={handleSubmit}>Submit</button>
+          <button className="submit-button" onClick={handleSubmit} disabled={isSubmitting}>Submit</button>
         )}
       </div>
+
+      {/* Modal */}
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <p>{modalMessage}</p>
+            {(modalMessage.includes("SUBMITTED") || modalMessage.includes("WRONG")) && (
+              <button 
+              className="submit-form-button"
+              onClick={() => {
+                setShowModal(false);
+                setIsSubmitting(false);
+                window.location.href = "/";
+              }}>OK</button>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

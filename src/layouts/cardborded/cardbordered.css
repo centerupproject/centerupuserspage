@@ -1,0 +1,70 @@
+.bordered__card{
+    width: 1500px;
+    height: 500px;
+    padding: 54px 48px;
+    border: 4px solid white;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around 
+  }
+  .bordered_card_background {
+    width: 750px;
+    height: 440px;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden;
+/* crucial to clip the image inside the border radius */
+  }
+  
+  .bordered_card_background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+.bordered_card_info{
+  width: 627px;
+  height: 257px;
+  display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.bordered_card_info--title{
+  font-size: 48px;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  margin: 0;
+
+}
+.bordered_card_info--description{
+  color: #F5F5F5;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 0;
+}
+.bordered_card_info--button{
+  width: 185px;
+  height: 53px;
+  padding: 13px 12px;
+  border-radius: 48px;
+  background-color: white;
+  color: #050A30;
+  font-size: 24px;
+  font-weight: 300;
+  font-family: 'Montserrat', sans-serif;
+}
+/* .bordered_card_info--button:hover{
+    width: 185px;
+    height: 53px;
+    padding: 13px 12px;
+    border-radius: 48px;
+    background-color: #050A30;
+    color: white;
+    border-color: #050A30;
+    font-size: 24px;
+    font-weight: 300;
+    font-family: 'Montserrat', sans-serif;
+  } */

@@ -1,64 +1,57 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation
+} from 'react-router-dom';
+
+import Home from './pages/home/home.js';
+import Header from './layouts/header/header.js';
+import Footer from './layouts/footer/footer.js';
 import Membership from './pages/membership/membership.js';
 import MembershipForm from './pages/membership/membershipForm.js';
 import Junior from './pages/junior/junior.js';
 import JuniorForm from './pages/junior/juniorForm.js';
 import Universities from './pages/universities/universities.js';
 import UniversitiesForm from './pages/universities/universitiesForm.js';
-import { GoogleOAuthProvider } from '@react-oauth/google';  // Import GoogleOAuthProvider
 
-// The Navbar component
-const Navbar = () => {
-  return (
-    <nav style={styles.navbar}>
-      <ul style={styles.navList}>
-        <li><Link to="/membership" style={styles.link}>Անդամագրություն</Link></li>
-        <li><Link to="/Junior" style={styles.link}>Center Up Junior</Link></li>
-        <li><Link to="/universities" style={styles.link}>Universities</Link></li>
-      </ul>
-    </nav>
-  );
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import './App.css';
+
+const BackgroundSetter = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname.toLowerCase() === '/junior') {
+      document.body.style.backgroundColor = '#1F043E';
+    } else {
+      document.body.style.backgroundColor = '#050A30';
+    }
+  }, [location.pathname]);
+
+  return null; 
 };
 
 const App = () => {
   return (
-    // Wrap the entire app inside the GoogleOAuthProvider
     <GoogleOAuthProvider clientId="336925899208-iemfbn286iq9sg0gbr51n8akildpdsuc.apps.googleusercontent.com">
       <Router>
-        <Navbar />
+        <BackgroundSetter />
+        <Header />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/membership" element={<Membership />} />
           <Route path="/membership/form" element={<MembershipForm />} />
-
           <Route path="/Junior" element={<Junior />} />
           <Route path="/junior/form" element={<JuniorForm />} />
-
           <Route path="/universities" element={<Universities />} />
           <Route path="/universities/form" element={<UniversitiesForm />} />
         </Routes>
+        <Footer />
       </Router>
     </GoogleOAuthProvider>
   );
-};
-
-const styles = {
-  navbar: {
-    backgroundColor: '#333',
-    padding: '10px',
-  },
-  navList: {
-    display: 'flex',
-    listStyle: 'none',
-    gap: '20px',
-    margin: 0,
-    padding: 0,
-  },
-  link: {
-    color: 'white',
-    textDecoration: 'none',
-    fontWeight: 'bold',
-  }
 };
 
 export default App;

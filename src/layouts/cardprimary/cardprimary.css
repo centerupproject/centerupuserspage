@@ -1,0 +1,69 @@
+.primary__card{
+    width: 1500px;
+    height: 500px;
+    padding: 54px 48px;
+    background-color: #F5F5F5;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .primary_card_background {
+    width: 750px;
+    height: 440px;
+    border-radius: 24px;
+    position: relative;
+    overflow: hidden; /* crucial to clip the image inside the border radius */
+  }
+  
+  .primary_card_background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .primary_card_info {
+    width: 627px;
+    height: 257px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .primary_card_info--title {
+    font-size: 48px;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    margin: 0;
+  }
+  
+  .primary_card_info--description {
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0;
+
+  }
+  
+  .primary_card_info--button {
+    width: 185px;
+    height: 53px;
+    padding: 13px 12px;
+    border-radius: 48px;
+    background-color: #050A30;
+    color: white;
+    font-size: 24px;
+    font-weight: 300;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  /* .primary_card_info--button:hover {
+    background-color: white;
+    color: #050A30;
+  }
+   */
