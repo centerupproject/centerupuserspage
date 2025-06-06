@@ -48,11 +48,11 @@ const App = () => {
           <Route path="/universities" element={<Universities />} />
           <Route path="/universities/form" element={<UniversitiesForm />} />
           <Route path="/workshops" element={<Workshops />} />
-          <Route path="/conferances" element={<Conferances />} />
+          <Route path="/conferences" element={<Conferances />} />
           <Route path="/futureUp" element={<FutureUp />} />
           <Route path="/upcoming" element={<UpComing />} />
           <Route path="/eventorg" element={<EventOrg />} />
-          <Route path="/inernational-camps" element={<InternationalCamps />} />
+          <Route path="/international-camps" element={<InternationalCamps />} />
         </Routes>
         <Footer />
       </Router>
