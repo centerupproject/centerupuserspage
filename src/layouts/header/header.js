@@ -1,35 +1,131 @@
 import { Link, useLocation } from 'react-router-dom';
 import './header.css';
+import { useState } from 'react';
 
 const Header = () => {
   const location = useLocation();
-  const isActive = (path) => location.pathname === path;
+  const [servicesOpen, setServicesOpen] = useState(false);
+
+  // List of dropdown paths for active state check
+  const servicePaths = [
+    '/membership',
+    '/junior',
+    '/universities',
+    '/workshops',
+    '/conferences',
+    '/futureUp',
+    '/international-camps',
+    '/eventorg',
+    '/upcoming'
+  ];
+
+  // Check if current path matches a given path or any service path
+  const isActive = (path) => {
+    if (path === '/services') {
+      return servicePaths.includes(location.pathname);
+    }
+    return location.pathname === path;
+  };
+
+  // Toggle dropdown on click
+  const toggleServices = () => {
+    setServicesOpen((prev) => !prev);
+  };
+
+  // Close dropdown when clicking a link
+  const closeServices = () => {
+    setServicesOpen(false);
+  };
 
   return (
     <div className="header-nav-bar">
-      <div className='header-logo'>
-        <img src='/center up png 1.png' alt='p' />
+      <div className="header-logo">
+        <img src="/center up png 1.png" alt="Center Up Logo" />
       </div>
-      <div className='header-navbar'>
-        <ul className='navbar-list'>
+
+      <div className="header-navbar">
+        <ul className="navbar-list">
           <li>
-            <Link to="/" className={`navbar-list-links ${isActive('/') ? 'active' : ''}`}>Home</Link>
+            <Link to="/" className={`navbar-list-links ${isActive('/') ? 'active' : ''}`}>
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/about-us" className={`navbar-list-links ${isActive('/about-us') ? 'active' : ''}`}>About Us</Link>
+            <Link to="/about-us" className={`navbar-list-links ${isActive('/about-us') ? 'active' : ''}`}>
+              About Us
+            </Link>
           </li>
           <li>
-            <Link to="/our-team" className={`navbar-list-links ${isActive('/our-team') ? 'active' : ''}`}>Our Team</Link>
+            <Link to="/our-team" className={`navbar-list-links ${isActive('/our-team') ? 'active' : ''}`}>
+              Our Team
+            </Link>
           </li>
-          <li>
-            <Link to="/services" className={`navbar-list-links ${isActive('/services') ? 'active' : ''}`}>Services</Link>
+
+          <li className="services-dropdown">
+            <span
+              className={`navbar-list-links ${isActive('/services') ? 'active' : ''}`}
+              onClick={toggleServices}
+              role="button"
+              aria-expanded={servicesOpen}
+              aria-haspopup="true"
+            >
+              Services
+            </span>
+            {servicesOpen && (
+              <ul className="dropdown-menu">
+                <li>
+                  <Link to="/membership" onClick={closeServices}>
+                    Membership
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/junior" onClick={closeServices}>
+                    Center Up Junior
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/universities" onClick={closeServices}>
+                    International Universities
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/workshops" onClick={closeServices}>
+                    Workshops/Seminars
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/conferences" onClick={closeServices}>
+                    Conferences
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/futureUp" onClick={closeServices}>
+                    Future Up
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/international-camps" onClick={closeServices}>
+                    Summer Camp
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/eventorg" onClick={closeServices}>
+                    Event Organization
+                  </Link>
+                </li>
+              </ul>
+            )}
           </li>
+
           <li>
-            <Link to="/contact-us" className={`navbar-list-links ${isActive('/contact-us') ? 'active' : ''}`}>Contact Us</Link>
+            <Link to="/contact-us" className={`navbar-list-links ${isActive('/contact-us') ? 'active' : ''}`}>
+              Contact Us
+            </Link>
           </li>
         </ul>
       </div>
-      <div className='header-lang'>
+
+      <div className="header-lang">
         <button>En/Arm</button>
       </div>
     </div>

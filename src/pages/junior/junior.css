@@ -1,34 +1,68 @@
+:root {
+  --default-background: #050A30;
+}
+
+body {
+  background-color: var(--default-background);
+  margin: 0;
+}
+
 .junior-page__background {
   width: 100%;
-  height: 1024px;
-  background: url('/public/CuJuniorBg (2).png') center center / cover no-repeat;
+  /* Remove fixed height to allow the container to adapt to the image */
+  background: 
+    linear-gradient(180deg, #050A30 0%, rgba(31, 4, 62, 0.20) 30.47%, #1F043E 100%),
+    url('/public/CuJuniorBg.png') center center / cover no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-bottom: 60px;
+  /* Optional: Ensure the container respects the image's aspect ratio */
+  background-size: cover;
+  background-position: center;
+  /* Use min-height to ensure content is visible if image is small */
+  min-height: 100%;
 }
-  .junior-page__description{
-    font-size: 20px;
-    color: white;
-    font-weight: 300;
-    width: 52%;
-    text-align: center;
-    font-family: 'Montserrat', sans-serif;
 
-  }
-  .junior-page{
-    background-color: #1F043E ;
-    margin-bottom: 90px;
-  }
+.junior-page__description {
+  font-size: 20px;
+  color: white;
+  font-weight: 300;
+  width: 52%;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
 
-  .junior-page__cards {
-    background-color: #1F043E;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 80px;
-    gap: 63px;
-  }
-  
+.junior-page {
+  background-color: #1F043E;
+  padding-bottom: 90px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.junior-page:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 890px;
+  background: linear-gradient(180deg, transparent 0%, #050927 50%, #1F043E 100%);
+  pointer-events: none; 
+  z-index: 1; 
+}
+
+.junior-page__cards {
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 80px;
+  gap: 63px;
+  position: relative; 
+  z-index: 2;
+}

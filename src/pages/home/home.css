@@ -51,3 +51,37 @@
         gap: 63px;
   }
   
+  .home-page__banner {
+    width: 100%;
+    height: 100px;
+    background-color: #FFA008; /* yellow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .home-page__banner-text {
+    display: inline-flex; /* Align spans side-by-side */
+    white-space: nowrap;
+    animation: marquee 15s linear infinite; /* Adjust duration for speed */
+  }
+  
+  .home-page__banner-text span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36px;
+    font-weight: 500;
+    color: #050A30;
+    margin: 0;
+  }
+  
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-100%); /* Move by the width of one span */
+      }
+    }
+
+    

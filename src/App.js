@@ -15,6 +15,12 @@ import Junior from './pages/junior/junior.js';
 import JuniorForm from './pages/junior/juniorForm.js';
 import Universities from './pages/universities/universities.js';
 import UniversitiesForm from './pages/universities/universitiesForm.js';
+import Workshops from './pages/workshops/workshops.js';
+import Conferances from './pages/conferances/conferances.js';
+import FutureUp from './pages/futureUp/futureUp.js';
+import UpComing from './pages/upcomingEvents/upcomingEvents.js';
+import EventOrg from './pages/eventOrg/eventOrg.js';
+import InternationalCamps from './pages/intCamps/intCamps.js';
 
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import './App.css';
@@ -22,13 +28,7 @@ import './App.css';
 const BackgroundSetter = () => {
   const location = useLocation();
 
-  useEffect(() => {
-    if (location.pathname.toLowerCase() === '/junior') {
-      document.body.style.backgroundColor = '#1F043E';
-    } else {
-      document.body.style.backgroundColor = '#050A30';
-    }
-  }, [location.pathname]);
+
 
   return null; 
 };
@@ -47,6 +47,12 @@ const App = () => {
           <Route path="/junior/form" element={<JuniorForm />} />
           <Route path="/universities" element={<Universities />} />
           <Route path="/universities/form" element={<UniversitiesForm />} />
+          <Route path="/workshops" element={<Workshops />} />
+          <Route path="/conferances" element={<Conferances />} />
+          <Route path="/futureUp" element={<FutureUp />} />
+          <Route path="/upcoming" element={<UpComing />} />
+          <Route path="/eventorg" element={<EventOrg />} />
+          <Route path="/inernational-camps" element={<InternationalCamps />} />
         </Routes>
         <Footer />
       </Router>

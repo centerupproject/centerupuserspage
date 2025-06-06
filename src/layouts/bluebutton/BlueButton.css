@@ -8,15 +8,10 @@
     font-size: 24px;
     font-weight: 300;
     font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+
   }
-  /* .blue__button{
-    width: 185px;
-    height: 53px;
-    padding: 13px 12px;
-    border-radius: 48px;
-    background-color: white;
-    color: #050A30;
-    font-size: 24px;
-    font-weight: 300;
-    font-family: 'Montserrat', sans-serif;
-  } */
+  .blue__button:hover{
+    border-radius: 24px;
+    background-color: #575D8B;
+  }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './universities.css';
+import './conferances.css';
 
 import { CardSplitRightImage } from '../../layouts/cardsplitright/cardsplitright.js';
 import { CardSplitLeftImage } from '../../layouts/cardsplitleft/cardsplitleft.js';
@@ -7,12 +7,12 @@ import { HeadLine } from '../../layouts/headline/headline.js';
 import { TextCard } from '../../layouts/textcard/TextCard.js';
 import { WhiteButton } from '../../layouts/whitebutton/WhiteButton.js';
 
-const Universities = () => {
+const Conferences = () => {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://centerupui-default-rtdb.firebaseio.com/Universities.json")
+    fetch("https://centerupui-default-rtdb.firebaseio.com/Conferences.json")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -31,15 +31,15 @@ const Universities = () => {
       });
   }, []);
 
-  if (loading) return <div>Loading membership program...</div>;
+  if (loading) return <div>Loading conferences program...</div>;
 
   return (
-    <div className="universities-page">
-      <div className="universities-page__background">
-        <h1 className="universities-page__title">International Universities</h1>
+    <div className="conferances">
+      <div className="conferances__background">
+        <h1 className="conferances__title">Conferances</h1>
       </div>
 
-      <div className="universities-page__cards">
+      <div className="conferances__cards">
         {cards.map((card, index) => {
           switch (card.CardType) {
             case "CardSplitLeftImage":
@@ -84,13 +84,6 @@ const Universities = () => {
                   redirect={card.redirect}
                 />
               );
-              case "image":
-              return (
-                <img
-                  src={card.image}
-                  alt="img"
-                />
-              );
             default:
               return null;
           }
@@ -100,4 +93,4 @@ const Universities = () => {
   );
 };
 
-export default Universities;
+export default Conferences;

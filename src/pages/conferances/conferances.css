@@ -1,9 +1,10 @@
-.universities-page__background {
+.conferances__background {
     width: 100%;
     height: 1024px;
     background: 
     linear-gradient(180deg, #050927 0%, rgba(5, 9, 39, 0.40) 40.74%, #050927 100%),
-     url('/public/unibg.png') center center / cover no-repeat;
+
+     url('/public/conferances.png') center center / cover no-repeat;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -12,16 +13,15 @@
     padding-bottom: 60px;
     position: relative;
   }
-  
-  .universities-page__title{
+  .conferances__title{
     font-size: 96px;
     font-weight: bold;
     color: #FFA008;
     font-family: 'Montserrat', sans-serif;
-    bottom: 186px;
     position: absolute;
+  bottom: 186px;
   }
-  .universities-page__description{
+  .conferances__description{
     font-size: 20px;
     color: white;
     font-weight: 300;
@@ -30,12 +30,12 @@
     font-family: 'Montserrat', sans-serif;
 
   }
-  .universities-page{
+  .conferances{
     background-color: #050A30;
     margin-bottom: 90px;
   }
 
-  .universities-page__cards {
+  .conferances__cards {
     background-color: #050A30;
     display: flex;
     flex-direction: column;
