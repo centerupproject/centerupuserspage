@@ -1,6 +1,6 @@
 .home-page__background {
     width: 100%;
-    height: 1024px;
+    height: 890px;
     background:  url('/public/cuhomebg.png') center center / cover no-repeat;
     display: flex;
     align-items: flex-end;
