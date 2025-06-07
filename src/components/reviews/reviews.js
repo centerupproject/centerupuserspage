@@ -57,7 +57,7 @@ const Reviews = () => {
         <div
           className="reviews__wrapper--cards"
           style={{
-            transform: `translateX(-${currentIndex * (750 * 2 + 61)}px)`,
+            transform: `translateX(-${currentIndex * (746 * 2 + 61)}px)`,
           }}
         >
           {reviews.map((review, index) => (
