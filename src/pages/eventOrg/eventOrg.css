@@ -2,7 +2,7 @@
     width: 100%;
     height: 1024px;
     background: 
-    linear-gradient(180deg, #050927 0%, rgba(5, 9, 39, 0.40) 40.74%, #050927 100%),
+     linear-gradient(180deg, #050927 0%, rgba(5, 9, 39, 0.40) 40.74%, #050927 100%),
     url('/public/eventorg.png') center center / cover no-repeat;
     display: flex;
     flex-direction: column;
@@ -30,12 +30,12 @@
 
   }
   .event-organization{
-    background-color: #050A30;
+    background-color: #050927;
     margin-bottom: 90px;
   }
 
   .event-organization__cards {
-    background-color: #050A30;
+    background-color: #050927;
     display: flex;
     flex-direction: column;
     justify-content: center;

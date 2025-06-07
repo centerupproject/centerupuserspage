@@ -11,8 +11,8 @@ const Header = () => {
     '/membership',
     '/junior',
     '/universities',
-    '/workshops',
-    '/conferences',
+    '/courses-activities',
+    '/conferances',
     '/futureUp',
     '/international-camps',
     '/eventorg',
@@ -89,13 +89,13 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/workshops" onClick={closeServices}>
-                    Workshops/Seminars
+                  <Link to="/courses-activities" onClick={closeServices}>
+                    Courses & Activities
                   </Link>
                 </li>
                 <li>
-                  <Link to="/conferences" onClick={closeServices}>
-                    Conferences
+                  <Link to="/conferances" onClick={closeServices}>
+                    Conferances
                   </Link>
                 </li>
                 <li>
@@ -105,7 +105,7 @@ const Header = () => {
                 </li>
                 <li>
                   <Link to="/international-camps" onClick={closeServices}>
-                    Summer Camp
+                    International Camp
                   </Link>
                 </li>
                 <li>

@@ -39,6 +39,7 @@ const App = () => {
       <Router>
         <BackgroundSetter />
         <Header />
+        <main style={{ marginTop: '100px' }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/membership" element={<Membership />} />
@@ -47,13 +48,14 @@ const App = () => {
           <Route path="/junior/form" element={<JuniorForm />} />
           <Route path="/universities" element={<Universities />} />
           <Route path="/universities/form" element={<UniversitiesForm />} />
-          <Route path="/workshops" element={<Workshops />} />
-          <Route path="/conferences" element={<Conferances />} />
+          <Route path="/courses-activities" element={<Workshops />} />
+          <Route path="/conferances" element={<Conferances />} />
           <Route path="/futureUp" element={<FutureUp />} />
           <Route path="/upcoming" element={<UpComing />} />
           <Route path="/eventorg" element={<EventOrg />} />
-          <Route path="/international-camps" element={<InternationalCamps />} />
+          <Route path="/inernational-camps" element={<InternationalCamps />} />
         </Routes>
+        </main>
         <Footer />
       </Router>
     </GoogleOAuthProvider>

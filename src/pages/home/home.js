@@ -1,4 +1,3 @@
-// Home.jsx
 import React, { useEffect, useState } from "react";
 import './home.css';
 import { CardBordered } from '../../layouts/cardborded/cardbordered.js';
@@ -23,9 +22,7 @@ const Home = () => {
           setLoading(false);
           return;
         }
-        // Convert Firebase object to array and include keys
         const cardsArray = Object.entries(data).map(([key, value]) => ({ key, ...value }));
-        // Sort by Order ascending
         cardsArray.sort((a, b) => a.Order - b.Order);
         setCards(cardsArray);
         setLoading(false);
@@ -44,14 +41,16 @@ const Home = () => {
         <h1>Welcome to our big family</h1>
       </div>
       <div className="home-page__banner">
-      <div className="home-page__banner-text">
-        <span>{repeatedText}</span>
-        <span>{repeatedText}</span> 
-      </div>
+  <div className="marquee">
+    <div className="marquee__content">
+      <span>{repeatedText}</span>
+      <span>{repeatedText}</span>
     </div>
+  </div>
+</div>
+
       <div className="home-page__cards">
         {cards.map((card, index) => {
-          // Dynamically render component based on CardType
           switch (card.CardType) {
             case "CardBordered":
               return (

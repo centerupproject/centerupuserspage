@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./reviews.css";
 
 const Reviews = () => {
@@ -36,45 +36,40 @@ const Reviews = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const maxIndex = reviews.length - 2;
-  const [fadeClass, setFadeClass] = useState("");
+  const totalPages = Math.ceil(reviews.length / 2);
+  const maxIndex = totalPages - 1;
 
   const handleNext = () => {
     if (currentIndex < maxIndex) {
-      setFadeClass("fade-out");
-      setTimeout(() => {
-        setCurrentIndex(currentIndex + 2);
-        setFadeClass("fade-in");
-      }, 200);
+      setCurrentIndex(currentIndex + 1);
     }
   };
 
   const handlePrev = () => {
     if (currentIndex > 0) {
-      setFadeClass("fade-out");
-      setTimeout(() => {
-        setCurrentIndex(currentIndex - 2);
-        setFadeClass("fade-in");
-      }, 200);
+      setCurrentIndex(currentIndex - 1);
     }
   };
 
-  useEffect(() => {
-    const timeout = setTimeout(() => setFadeClass(""), 400);
-    return () => clearTimeout(timeout);
-  }, [fadeClass]);
-
   return (
     <div className="reviews__wrapper">
-      <div className={`reviews__wrapper--cards ${fadeClass}`}>
-        {reviews.slice(currentIndex, currentIndex + 2).map((review, index) => (
-          <div key={index} className="reviews__cards--card">
-            <h1>{review.name}</h1>
-            <span>{review.role}</span>
-            <span>{review.text}</span>
-          </div>
-        ))}
+      <div className="reviews__slider">
+        <div
+          className="reviews__wrapper--cards"
+          style={{
+            transform: `translateX(-${currentIndex * (750 * 2 + 61)}px)`,
+          }}
+        >
+          {reviews.map((review, index) => (
+            <div key={index} className="reviews__cards--card">
+              <h1>{review.name}</h1>
+              <span>{review.role}</span>
+              <span>{review.text}</span>
+            </div>
+          ))}
+        </div>
       </div>
+
       <div className="reviews__wrapper--actions">
         <img
           src="/leftarrow.png"

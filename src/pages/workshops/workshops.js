@@ -36,7 +36,7 @@
     return (
       <div className="workshops">
         <div className="workshops__background">
-          <h1 className="workshops__title">Workshops/Seminars</h1>
+          <h1 className="workshops__title">Courses & Activities</h1>
         </div>
 
         <div className="workshops__cards">

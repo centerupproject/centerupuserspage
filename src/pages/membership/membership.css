@@ -1,19 +1,24 @@
 .membership-page__background {
     width: 100%;
     height: 1024px;
-    background:  url('/public/cuhomebg.png') center center / cover no-repeat;
+    background: 
+    linear-gradient(180deg, #050927 0%, rgba(5, 9, 39, 0.40) 40.74%, #050927 100%),
+     url('/public/membershipbg.png') center center / cover no-repeat;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     justify-content: center;
     align-items: center;
     padding-bottom: 60px;
+    position: relative;
   }
   .membership-page__title{
     font-size: 96px;
     font-weight: bold;
     color: #FFA008;
     font-family: 'Montserrat', sans-serif;
+    position: absolute;
+    bottom: 186px;
   }
   .membership-page__description{
     font-size: 20px;
@@ -25,12 +30,12 @@
 
   }
   .membership-page{
-    background-color: #050A30;
+    background-color: #050927;
     margin-bottom: 90px;
   }
 
   .membership-page__cards {
-    background-color: #050A30;
+    background-color: #050927;
     display: flex;
     flex-direction: column;
     justify-content: center;

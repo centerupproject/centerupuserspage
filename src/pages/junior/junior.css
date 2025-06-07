@@ -1,3 +1,5 @@
+
+
 :root {
   --default-background: #050A30;
 }
@@ -17,7 +19,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 60px;
+  padding-bottom: 58px;
   /* Optional: Ensure the container respects the image's aspect ratio */
   background-size: cover;
   background-position: center;
@@ -50,7 +52,7 @@ body {
   left: 0;
   width: 100%;
   height: 890px;
-  background: linear-gradient(180deg, transparent 0%, #050927 50%, #1F043E 100%);
+  background: linear-gradient(180deg, #1F043E 0%, #050927 100%);
   pointer-events: none; 
   z-index: 1; 
 }
