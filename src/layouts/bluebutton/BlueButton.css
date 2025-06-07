@@ -8,6 +8,7 @@
     font-family: 'Montserrat', sans-serif;
     cursor: pointer;
     width: fit-content;
+    border-color: transparent;
   }
   .blue__button:hover{
     background-color: #575D8B;
