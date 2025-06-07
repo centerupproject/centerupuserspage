@@ -53,7 +53,7 @@ const App = () => {
           <Route path="/futureUp" element={<FutureUp />} />
           <Route path="/upcoming" element={<UpComing />} />
           <Route path="/eventorg" element={<EventOrg />} />
-          <Route path="/inernational-camps" element={<InternationalCamps />} />
+          <Route path="/international-camps" element={<InternationalCamps />} />
         </Routes>
         </main>
         <Footer />
