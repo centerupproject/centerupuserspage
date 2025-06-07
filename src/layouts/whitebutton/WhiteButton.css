@@ -11,6 +11,7 @@
 font-family: Montserrat;
 cursor: pointer;
 width: fit-content;
+    border-color: transparent;
   }
   .white__button:hover{
   color: #050A30;
