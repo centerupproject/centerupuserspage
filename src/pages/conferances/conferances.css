@@ -1,6 +1,6 @@
 .conferances__background {
     width: 100%;
-    height: 1024px;
+    height: 880px;
     background: 
      linear-gradient(180deg, #050927 0%, rgba(5, 9, 39, 0.40) 40.74%, #050927 100%),
      url('/public/conferances.png') center center / cover no-repeat;
@@ -18,7 +18,7 @@
     color: #FFA008;
     font-family: 'Montserrat', sans-serif;
     position: absolute;
-  bottom: 186px;
+    bottom: 153px;
   }
   .conferances__description{
     font-size: 20px;

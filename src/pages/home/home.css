@@ -8,8 +8,7 @@
     align-items: flex-end;
     position: relative;
     justify-content: center;
-/*     padding-bottom: 60px; */
-    
+    padding-bottom: 60px;
   }
   
   .home-page__background h1 {
