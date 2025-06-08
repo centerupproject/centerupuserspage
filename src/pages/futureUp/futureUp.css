@@ -1,7 +1,6 @@
 .future-up__background {
     width: 100%;
     height: 1024px;
-    background:  url('/public/cuhomebg.png') center center / cover no-repeat;
     display: flex;
     flex-direction: column;
     align-items: flex-end;

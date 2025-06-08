@@ -5,12 +5,12 @@ export const CardSplitRightImage = ({ title, description, image, redirect }) => 
   const navigate = useNavigate();
 
   return (
-    <div className="cardsplit__container">
-      <div className="cardsplit__text">
+    <div className="CardSplitRightImage__container">
+      <div className="CardSplitRightImage__text">
         <h1>{title}</h1>
         <p dangerouslySetInnerHTML={{ __html: description }} />
       </div>
-      <div className="cardsplit__image">
+      <div className="CardSplitRightImage__image">
         <img src={image} alt={title} />
       </div>
     </div>

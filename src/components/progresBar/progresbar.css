@@ -1,0 +1,42 @@
+.progres-bar__cards{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    align-items: center;
+    gap: 68px;
+}
+
+hr{
+    width: 100%;
+}
+.progres-cards__card{
+    width: 470px;
+    height: 168px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+}
+.progres-bar__title{
+    display: flex;
+    font-size: 44px;
+    color: #FFF;
+font-family: Montserrat;
+font-size: 44px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+letter-spacing: -0.66px;
+gap: 68px;
+}
+.progres-values__value{
+    color: #FFA719;
+font-family: Montserrat;
+font-size: 44px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+letter-spacing: -0.66px;
+
+}

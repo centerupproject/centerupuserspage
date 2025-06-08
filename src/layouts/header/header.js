@@ -5,8 +5,8 @@ import { useState } from 'react';
 const Header = () => {
   const location = useLocation();
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [language, setLanguage] = useState(() => localStorage.getItem('language') || 'en');
 
-  // List of dropdown paths for active state check
   const servicePaths = [
     '/membership',
     '/junior',
@@ -19,7 +19,6 @@ const Header = () => {
     '/upcoming'
   ];
 
-  // Check if current path matches a given path or any service path
   const isActive = (path) => {
     if (path === '/services') {
       return servicePaths.includes(location.pathname);
@@ -27,14 +26,18 @@ const Header = () => {
     return location.pathname === path;
   };
 
-  // Toggle dropdown on click
   const toggleServices = () => {
     setServicesOpen((prev) => !prev);
   };
 
-  // Close dropdown when clicking a link
   const closeServices = () => {
     setServicesOpen(false);
+  };
+
+  const toggleLanguage = () => {
+    const newLanguage = language === 'en' ? 'am' : 'en';
+    setLanguage(newLanguage);
+    localStorage.setItem('language', newLanguage);
   };
 
   return (
@@ -126,10 +129,12 @@ const Header = () => {
       </div>
 
       <div className="header-lang">
-        <button>En/Arm</button>
+        <button onClick={toggleLanguage}>
+          {language === 'en' ? 'Am/En' : 'En/Am'}
+        </button>
       </div>
     </div>
   );
 };
-
+// now integrate this page by logic of language if armenian it goes for example title.am as value but it need to check if title.am ? if not default go just title cuz just title is english same description
 export default Header;

@@ -16,7 +16,7 @@
     font-size: 24px;
     font-weight: 400;
     max-width: 1500px;
-    
+    width: 100%;
 }
 .headline__text {
     position: relative;
