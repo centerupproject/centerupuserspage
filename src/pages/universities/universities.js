@@ -6,10 +6,12 @@ import { CardSplitLeftImage } from '../../layouts/cardsplitleft/cardsplitleft.js
 import { HeadLine } from '../../layouts/headline/headline.js';
 import { TextCard } from '../../layouts/textcard/TextCard.js';
 import { WhiteButton } from '../../layouts/whitebutton/WhiteButton.js';
+import { CardBordered } from '../../layouts/cardborded/cardbordered.js';
 
 const Universities = () => {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [language, setLanguage] = useState(localStorage.getItem('language') || 'en');
 
   useEffect(() => {
     fetch("https://centerupui-default-rtdb.firebaseio.com/Universities.json")
@@ -31,23 +33,29 @@ const Universities = () => {
       });
   }, []);
 
-  if (loading) return <div>Loading membership program...</div>;
+  if (loading) return <div>Loading universities program...</div>;
 
   return (
     <div className="universities-page">
       <div className="universities-page__background">
-        <h1 className="universities-page__title">International Universities</h1>
+        <h1 className="universities-page__title">
+          {language === 'am' ? 'Միջազգային Բուհեր' : 'International Universities'}
+        </h1>
       </div>
 
       <div className="universities-page__cards">
         {cards.map((card, index) => {
+          const title = language === 'am' && card.titleAm ? card.titleAm : card.title;
+          const description = language === 'am' && card.descriptionAm ? card.descriptionAm : card.description;
+          const text = language === 'am' && card.textAm ? card.textAm : card.text;
+
           switch (card.CardType) {
             case "CardSplitLeftImage":
               return (
                 <CardSplitLeftImage
                   key={index}
-                  title={card.title}
-                  description={card.description}
+                  title={title}
+                  description={description}
                   image={card.image}
                 />
               );
@@ -55,8 +63,17 @@ const Universities = () => {
               return (
                 <CardSplitRightImage
                   key={index}
-                  title={card.title}
-                  description={card.description}
+                  title={title}
+                  description={description}
+                  image={card.image}
+                />
+              );
+            case "CardBordered":
+              return (
+                <CardBordered
+                  key={index}
+                  title={title}
+                  description={description}
                   image={card.image}
                 />
               );
@@ -64,29 +81,30 @@ const Universities = () => {
               return (
                 <HeadLine
                   key={index}
-                  title={card.title}
-                  description={card.description}
+                  title={title}
+                  description={description}
                 />
               );
             case "TextCard":
               return (
                 <TextCard
                   key={index}
-                  title={card.title}
-                  description={card.description}
+                  title={title}
+                  description={description}
                 />
               );
             case "WhiteButton":
               return (
                 <WhiteButton
                   key={index}
-                  text={card.text}
+                  text={text}
                   redirect={card.redirect}
                 />
               );
-              case "image":
+            case "image":
               return (
                 <img
+                  key={index}
                   src={card.image}
                   alt="img"
                 />

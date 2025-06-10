@@ -2,6 +2,22 @@ import { Link, useLocation } from 'react-router-dom';
 import './header.css';
 import { useState } from 'react';
 
+const navLabels = {
+  home: { en: 'Home', am: 'Գլխավոր' },
+  aboutUs: { en: 'About Us', am: 'Մեր Մասին' },
+  ourTeam: { en: 'Our Team', am: 'Մեր Թիմը' },
+  services: { en: 'Services', am: 'Ծառայություններ' },
+  membership: { en: 'Membership', am: 'Անդամագրություն' },
+  junior: { en: 'Center Up Junior', am: 'Center Up Junior' }, // example, adjust if needed
+  universities: { en: 'International Universities', am: 'Միջազգային Բուհեր' },
+  coursesActivities: { en: 'Courses & Activities', am: 'Դասընթացներ և ժամանց' },
+  conferences: { en: 'Conferences', am: 'Կոնֆերանսներ' },
+  futureUp: { en: 'Future Up', am: 'Future Up' },
+  internationalCamps: { en: 'International Camp', am: 'Միջազգային Ճամբար' },
+  eventOrg: { en: 'Event Organization', am: 'Միջոցառումների կազմակերպում' },
+  contactUs: { en: 'Contact Us', am: 'Կապ մեզ հետ' },
+};
+
 const Header = () => {
   const location = useLocation();
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -38,6 +54,13 @@ const Header = () => {
     const newLanguage = language === 'en' ? 'am' : 'en';
     setLanguage(newLanguage);
     localStorage.setItem('language', newLanguage);
+    window.location.reload();
+  };
+
+  // Helper to get label with fallback to English
+  const t = (key) => {
+    if (!navLabels[key]) return key; // fallback to key itself if missing
+    return navLabels[key][language] || navLabels[key].en;
   };
 
   return (
@@ -50,17 +73,17 @@ const Header = () => {
         <ul className="navbar-list">
           <li>
             <Link to="/" className={`navbar-list-links ${isActive('/') ? 'active' : ''}`}>
-              Home
+              {t('home')}
             </Link>
           </li>
           <li>
             <Link to="/about-us" className={`navbar-list-links ${isActive('/about-us') ? 'active' : ''}`}>
-              About Us
+              {t('aboutUs')}
             </Link>
           </li>
           <li>
             <Link to="/our-team" className={`navbar-list-links ${isActive('/our-team') ? 'active' : ''}`}>
-              Our Team
+              {t('ourTeam')}
             </Link>
           </li>
 
@@ -72,48 +95,48 @@ const Header = () => {
               aria-expanded={servicesOpen}
               aria-haspopup="true"
             >
-              Services
+              {t('services')}
             </span>
             {servicesOpen && (
               <ul className="dropdown-menu">
                 <li>
                   <Link to="/membership" onClick={closeServices}>
-                    Membership
+                    {t('membership')}
                   </Link>
                 </li>
                 <li>
                   <Link to="/junior" onClick={closeServices}>
-                    Center Up Junior
+                    {t('junior')}
                   </Link>
                 </li>
                 <li>
                   <Link to="/universities" onClick={closeServices}>
-                    International Universities
+                    {t('universities')}
                   </Link>
                 </li>
                 <li>
                   <Link to="/courses-activities" onClick={closeServices}>
-                    Courses & Activities
+                    {t('coursesActivities')}
                   </Link>
                 </li>
                 <li>
                   <Link to="/conferances" onClick={closeServices}>
-                    Conferances
+                    {t('conferences')}
                   </Link>
                 </li>
                 <li>
                   <Link to="/futureUp" onClick={closeServices}>
-                    Future Up
+                    {t('futureUp')}
                   </Link>
                 </li>
                 <li>
                   <Link to="/international-camps" onClick={closeServices}>
-                    International Camp
+                    {t('internationalCamps')}
                   </Link>
                 </li>
                 <li>
                   <Link to="/eventorg" onClick={closeServices}>
-                    Event Organization
+                    {t('eventOrg')}
                   </Link>
                 </li>
               </ul>
@@ -122,7 +145,7 @@ const Header = () => {
 
           <li>
             <Link to="/contact-us" className={`navbar-list-links ${isActive('/contact-us') ? 'active' : ''}`}>
-              Contact Us
+              {t('contactUs')}
             </Link>
           </li>
         </ul>
@@ -130,11 +153,11 @@ const Header = () => {
 
       <div className="header-lang">
         <button onClick={toggleLanguage}>
-          {language === 'en' ? 'Am/En' : 'En/Am'}
+          {language === 'en' ? 'En/Arm' : 'Arm/En'}
         </button>
       </div>
     </div>
   );
 };
-// now integrate this page by logic of language if armenian it goes for example title.am as value but it need to check if title.am ? if not default go just title cuz just title is english same description
+
 export default Header;

@@ -3,7 +3,7 @@
   height: 880px;
   background:  
   linear-gradient(180deg, #050927 0%, rgba(5, 9, 39, 0.40) 40.74%, #050927 100%),
-  url('/public/OurTeambg.png') center center / cover no-repeat;
+  url('/public/Team.png') center center / cover no-repeat;
   display: flex;
   flex-direction: column;
   align-items: flex-end;

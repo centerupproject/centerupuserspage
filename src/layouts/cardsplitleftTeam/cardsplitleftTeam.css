@@ -68,7 +68,7 @@
 
   
   .cardsplitleftTeam__image img {
-    width: auto;
+    width: 500px;
     height: auto;
     object-fit: cover;
     display: block; 

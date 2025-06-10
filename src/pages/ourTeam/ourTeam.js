@@ -43,7 +43,7 @@ const OurTeam = () => {
   return (
     <div className="about-us">
       <div className="about-us__background">
-        <h1 className="about-us__title">Our Team</h1>
+        <h1 className="about-us__title"> {language === 'am' ? 'Մեր մասին' : 'Our Team'}</h1>
       </div>
 
       <div className="about-us__cards">

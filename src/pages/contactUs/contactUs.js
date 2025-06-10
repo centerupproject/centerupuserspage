@@ -63,7 +63,7 @@ const ContactUs = () => {
             </div>
             <div>
                 <img src='/mapp.png '/>
-                <strong>Address: </strong>: Sayat-Nova 11/2
+                <strong>Address: </strong> Sayat-Nova 11/2
             </div>
         </div>
         </div>

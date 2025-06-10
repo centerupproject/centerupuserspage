@@ -38,13 +38,13 @@ const Footer = () => {
         <a href="https://www.instagram.com/center__up/?hl=en" target="_blank">
           <img src="/insta.png" />
         </a>
-        <a href="https://www.instagram.com/center__up/?hl=en" target="_blank">
+        <a href="https://www.facebook.com/share/1BwYEKYwyq/?mibextid=wwXIfr" target="_blank">
           <img src="/facebook.png" />
         </a>
-        <a href="https://www.instagram.com/center__up/?hl=en" target="_blank">
+        <a href="https://t.me/centerup01" target="_blank">
           <img src="/tele.png" />
         </a>
-        <a href="https://www.instagram.com/center__up/?hl=en" target="_blank">
+        <a href="https://www.linkedin.com/company/center-up" target="_blank">
           <img src="/linkedin.png" />
         </a>
       </div>
